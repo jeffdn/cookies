@@ -1,0 +1,27 @@
+FOR PEOPLE INTERESTED IN PLAYING WITH TRANSLATING COOKIES:
+(OR INTEGRATING INTERNATIONALISATION INTO OUR MAKEFILE/BUILD SYSTEM)
+
+Currently, our internationalisation work is quite shitty.
+To generate a .po-file from the source, execute:
+
+	xgettext -C -k_ src/*.c -o foo_lang.po
+	
+from within the root of the source directory.
+
+Now edit that file to your liking.
+
+To convert that into a .mo-file, execute:
+	
+	msgfmt foo_lang.po -o foo_lang.mo
+
+And last but not least, to test your newly created .mo-file with cookies,
+you have to have set up up a correct localedir-structure. For testing the
+Danish translation of cookies, I had to do something along these lines:
+
+	mkdir -p localedir/da_DK/LC_MESSAGES/
+	cp da.mo localedir/da_DK/LC_MESSAGES/cookies.mo
+	export COOKIE_I18N_LOCALEDIR=./localedir/
+	export LC_ALL=da_DK
+	./cookies
+	
+For more information on the subject, please consult the gettext manual. :-)
