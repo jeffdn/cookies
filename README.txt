@@ -1,1 +1,1 @@
-An old MPD client frontent in GTK+2.
+An old MPD client frontend in GTK+2.
